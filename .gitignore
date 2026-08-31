@@ -6,15 +6,17 @@ Makefile
 *.dylib
 
 # Executables
-*.out
-*.bin
-*.exe# Ignore .DS_Store everywhere
+#*.out
+#*.bin
+#*.exe
+
+# Ignore .DS_Store everywhere
 .DS_Store
 **/.DS_Store
 
 # Ignore all shell scripts
-*.sh
-**/*.sh
+#*.sh
+#**/*.sh
 
 # ignore CMake detritus
 CMakeLists.txt.user
@@ -28,12 +30,7 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
-CMakeUserPresets.json
-
-.DS_Store
-**/.DS_Store
-*.sh
-**/*.sh
+CMakeUserPresets.jsonß
 
 # CLion
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
