@@ -4,6 +4,5 @@
 
 int main() {
     test_fxp();
-
     return 0;
 }
