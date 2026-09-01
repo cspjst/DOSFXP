@@ -29,6 +29,16 @@ int16_t fxp_unfix_floor(fxp16_t x);
 int16_t fxp_unfix_ceil(fxp16_t x);
 
 // exit from the 10:6 fixed point number line fxp16_t->int16_t, nearest, ties toward +infinity
-int16_t fxp_unfix_round(fxp16_t x);
+#pragma aux fxp_unfix_round =  \
+    "add ax, 32"                \
+    "sar ax, 1"                 \
+    "sar ax, 1"                 \
+    "sar ax, 1"                 \
+    "sar ax, 1"                 \
+    "sar ax, 1"                 \
+    "sar ax, 1"                 \
+    parm [ax]                   \
+    value [ax]                  \
+    modify [ax];
 
 #endif

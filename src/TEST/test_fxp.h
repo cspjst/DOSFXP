@@ -56,6 +56,13 @@ static void test_fxp() {
     printf("Test DOSFXP...\n");
     //test_exhaustive_roundtrip();
     test_known_constants();
+    float f = 3.0;
+
+    for(int i = 0; i < 10; ++i) {
+        fxp16_t x = fxp_fix(f);
+        printf("FXP_ONE = %i\n", fxp_unfix_round(x));
+        f += 0.1;
+    }
 }
 
 #endif
