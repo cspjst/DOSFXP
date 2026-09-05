@@ -10,6 +10,7 @@
 #include "../FXP/fxp_conversions.h"
 #include "../FXP/fxp_constants.h"
 #include "../FXP/fxp_limits.h"
+#include "../FXP/fxp_parts.h"
 
 static void test_exhaustive_roundtrip() {
     int32_t raw;
@@ -329,12 +330,38 @@ static void test_unfix() {
     printf("All fxp_unfix tests passed.\n");
 }
 
+static void test_exhaustive_parts() {
+    int32_t raw;
+
+    for (raw = INT16_MIN; raw <= INT16_MAX; raw++) {
+        fxp16_t v     = (fxp16_t)raw;
+        fxp16_t whole = fxp_part_whole(v);
+        fxp16_t frac  = fxp_part_frac(v);
+
+        /* reconstruction: the two parts must sum back to the original */
+        assert((int16_t)(whole + frac) == v);
+
+        /* frac must always be non-negative (0..63), regardless of sign -
+           it's a remainder after flooring, not a signed distance */
+        assert(frac >= 0 && frac <= FXP_PART_FRAC_MASK);
+
+        /* whole must always be a multiple of FXP_ONE (fraction bits
+           clear), and must equal floor(v) scaled back up by FXP_ONE -
+           checked against fxp_unfix_floor as an independent oracle */
+        assert((whole & FXP_PART_FRAC_MASK) == 0);
+        assert((int16_t)(whole >> FXP_FRACTIONAL_BITS) == fxp_unfix_floor(v));
+    }
+
+    printf("test_exhaustive_parts: PASS (65536/65536 values)\n");
+}
+
 static void test_fxp() {
     printf("Test DOSFXP...\n");
-    //test_exhaustive_roundtrip();
-    //test_known_constants();
-    //test_saturate();
+    test_exhaustive_roundtrip();
+    test_known_constants();
+    test_saturate();
     test_unfix();
+    test_exhaustive_parts();
 }
 
 #endif

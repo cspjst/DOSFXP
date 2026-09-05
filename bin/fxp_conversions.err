@@ -1,2 +1,2 @@
-/Users/jeremythornton/dosbox/cspjst/DOSFXP/src/FXP/fxp_conversions.c(49): Warning! W107: Missing return value for function 'fxp_unfix_truncate'
-/Users/jeremythornton/dosbox/cspjst/DOSFXP/src/FXP/fxp_conversions.c(82): Warning! W107: Missing return value for function 'fxp_unfix_ceiling'
+/Users/jeremythornton/dosbox/cspjst/DOSFXP/src/FXP/fxp_conversions.c(47): Warning! W107: Missing return value for function 'fxp_unfix_truncate'
+/Users/jeremythornton/dosbox/cspjst/DOSFXP/src/FXP/fxp_conversions.c(79): Warning! W107: Missing return value for function 'fxp_unfix_ceiling'
