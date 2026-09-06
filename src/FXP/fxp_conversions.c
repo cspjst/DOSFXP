@@ -8,8 +8,11 @@ fxp16_t fxp_fix_float(float f) {
     return (fxp16_t)(scaled >= 0.0f ? scaled + 0.5f : scaled - 0.5f);
 }
 
-fxp16_t fxp_saturate(int32_t n)
-{
+/**
+ * Saturation arithmetic avoids the dangers of modular wrap around by clamping storage size overflows to maximum or minimum
+ * representation of the storage size i.e. a local +infinity and -infinity aka FXP_MAX and FXP_MIN.
+ */
+fxp16_t fxp_saturate(int32_t n) {
     if (n > FXP_INFINITY)  return (fxp16_t)FXP_MAX;
     if (n < FXP_NINFINITY) return (fxp16_t)FXP_MIN;
     return (fxp16_t)n;
@@ -24,15 +27,15 @@ fxp16_t fxp_saturate(int32_t n)
 int16_t fxp_unfix_truncate(fxp16_t x) {
     __asm {
         .8086
-        or  ax, ax
-        jns L1                      ; signed?
-        add ax, FXP_PART_FRAC_MASK
-L1:     sar ax, 1
-        sar ax, 1
-        sar ax, 1
-        sar ax, 1
-        sar ax, 1
-        sar ax, 1
+        or      ax, ax
+        jns     L1                      ; signed?
+        add     ax, FXP_PART_FRAC_MASK
+L1:     sar     ax, 1
+        sar     ax, 1
+        sar     ax, 1
+        sar     ax, 1
+        sar     ax, 1
+        sar     ax, 1
     }
 }
 
@@ -42,16 +45,16 @@ L1:     sar ax, 1
 int16_t fxp_unfix_ceiling(fxp16_t x) {
     __asm {
         .8086
-        mov cx, x                   ; copy ax for test
-        sar ax, 1                   ; 8086 restricted to single shifts
-        sar ax, 1
-        sar ax, 1
-        sar ax, 1
-        sar ax, 1
-        sar ax, 1
-        test cx, FXP_PART_FRAC_MASK ; any fractional bits?
-        jz END
-        inc ax                      ; +1 if any fractional bit was set
+        mov     cx, x                   ; copy ax for test
+        sar     ax, 1                   ; 8086 restricted to single shifts
+        sar     ax, 1
+        sar     ax, 1
+        sar     ax, 1
+        sar     ax, 1
+        sar     ax, 1
+        test    cx, FXP_PART_FRAC_MASK  ; any fractional bits?
+        jz      END
+        inc     ax                      ; +1 if any fractional bit was set
 END:
     }
 }
