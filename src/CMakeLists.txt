@@ -73,8 +73,11 @@ endif()
 file(GLOB SOURCES
     CONFIGURE_DEPENDS
     *.c
+    ../DOSLIB/bioslib/src/BIOS/*.c
+    ../DOSLIB/src/DOS/*.c
     FXP/*.c
     TEST/*.c
+
 )
 
 # message(Source list="${SOURCES}")
