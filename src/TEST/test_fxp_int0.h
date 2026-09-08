@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 
-#include "../../DOSLIB/src/DOS/dos_services.h"
-#include "../../DOSLIB/src/DOS/dos_services_constants.h"
+#include "../../doslib/src/DOS/dos_services.h"
+#include "../../doslib/src/DOS/dos_services_constants.h"
 
 static const char PANIC_MESSAGE[] = "*FXP Panic! INT 0*$";
 
