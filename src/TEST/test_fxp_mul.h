@@ -87,8 +87,8 @@ static void test_overflow_gross(void)
  *    representative rhs constants - full single-operand coverage,
  *    not a sample.
  * ------------------------------------------------------------------ */
-static void test_exhaustive_by_lhs(void)
-{
+static void test_exhaustive_by_lhs() {
+    printf("test exhaustive - very slow on XT or emulated XT...\n");
     static const fxp16_t rhs_values[] = {
         0, 64, -64, 128, -128, 1, -1, 32767, -32768, 32, -32
     };

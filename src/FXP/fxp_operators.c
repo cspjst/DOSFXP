@@ -104,9 +104,7 @@ _SHLD:	sal		ax, 1			        ; shift left DX:AX as 32 bits
  * using only shifts, compares, and subtracts - no IDIV anywhere near it, deliberately, given the trouble already had getting fxp_div
  * safe across 8086 through 80286+.
  *
- * @note Origins. This is not a novel derivation - it is the same "digit recurrence" technique used in real square-root hardware
- * circuits (see e.g. Woo/Samavi-style non-restoring digit-by-digit FPGA implementations), applied here in software because the 8086
- * has no such circuit of its own. The specific software formulation traces to Martin Guy's "Square Root by Abacus Algorithm" (UKC,
+ * @note Origins. The specific software formulation traces to Martin Guy's "Square Root by Abacus Algorithm" (UKC,
  * June 1985), itself adapted from a method for computing square roots by hand on a Chinese abacus, described in a book by C.C. Woo
  * (following Kwa Tak Ming's 1922 original): "The Fundamental Operations in Bead Arithmetic". A physical copy survives in the
  * SOAS University of London library, of all the unlikely places for an 8086 fixed-point game library's ancestry to end up!
@@ -122,7 +120,7 @@ fxp16_t fxp_sqrt(fxp16_t x) {
         jns     SQRT                    ; non-negative -> continue normally
         int     0                       ; negative -> deliberate panic (see fxp_sqrt's header comment)
 
-SQRT    xor     dx, dx                  ; zero-extend x into dx:ax (x is >=0, confirmed above)
+SQRT:   xor     dx, dx                  ; zero-extend x into dx:ax (x is >=0, confirmed above)
 
         shl     ax, 1                   ; widen: build W = x_raw << FXP_FRACTIONAL_BITS (6)
         rcl     dx, 1                   ; unrolled - same small-shift trade already proven
@@ -386,7 +384,8 @@ SKIP16: mov     ax, si                  ; result: root, fully assembled bit by b
 
 /* this loop version trades ~260 fewer cycles for ~218 fewer bytes versus the unrolled version,
  * a worse cycles-per-byte trade than the 6-bit shifts in fxp_mul/ fxp_div, but it's considerably easier to read
-
+ */
+/*
 fxp16_t fxp_sqrt(fxp16_t x) {
     __asm {
         .8086
@@ -412,7 +411,7 @@ SQRT:   xor     dx, dx                  ; zero-extend x into dx:ax (x is >=0, co
         xor     si, si                  ; root = 0
         mov     cx, 16                  ; loop counter - exactly one pass per output bit
 
-LOOP:   shl     ax, 1                   ; extract 2 bits of W into rem, one bit at a
+L0:     shl     ax, 1                   ; extract 2 bits of W into rem, one bit at a
         rcl     dx, 1                   ; time - no single 8086 instruction does this,
         rcl     bx, 1                   ; each carry-chain step moves exactly one bit
         shl     ax, 1
@@ -428,10 +427,9 @@ LOOP:   shl     ax, 1                   ; extract 2 bits of W into rem, one bit 
         jb      SKIP                    ; no - leave this root bit as 0, skip the subtract
         sub     bx, di                  ; yes - rem -= candidate
         or      si, 1                   ; and set this iteration's root bit to 1
-SKIP:   loop    LOOP                    ; decrement cx, repeat until all 16 bits done
+SKIP:   loop    L0                      ; decrement cx, repeat until all 16 bits done
 
         mov     ax, si                  ; result: root, fully assembled bit by bit
     }
 }
-
 */
