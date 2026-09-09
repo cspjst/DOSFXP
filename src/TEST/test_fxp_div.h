@@ -35,8 +35,9 @@ static int32_t max_safe_lhs_magnitude(fxp16_t rhs)
  * 1. Known hand-computed examples, all independently pre-verified as
  *    safe (rhs != 0, quotient fits AX) before being hardcoded.
  * ------------------------------------------------------------------ */
-static void test_known_examples(void)
-{
+static void test_known_examples() {
+    printf("test known examples...\n");
+
     assert(fxp_div(-64, 64)   == -64);   /* -1.0 / 1.0  = -1.0  - the original sign-extension bug case */
     assert(fxp_div(64, 64)    == 64);    /*  1.0 / 1.0  =  1.0  */
     assert(fxp_div(-64, -64)  == 64);    /* -1.0 / -1.0 =  1.0  */
@@ -55,8 +56,8 @@ static void test_known_examples(void)
  *    (but fully covered) safe range; |rhs| >= 64 covers the entire
  *    lhs domain, since 32767*64/64 = 32767 (verified separately).
  * ------------------------------------------------------------------ */
-static void test_exhaustive_safe_zone(void)
-{
+static void test_exhaustive_safe_zone(void) {
+    printf("test exhaustive - very slow on XT or emulated XT...\n");
     static const fxp16_t rhs_values[] = {
         1, -1, 2, -2, 5, -5, 64, -64, 100, -100, 1000, -1000, 32767, -32768
     };
@@ -85,8 +86,8 @@ static void test_exhaustive_safe_zone(void)
  *    pick lhs uniformly within that bound. No rejection sampling, no
  *    possibility of ever calling fxp_div with an unsafe pair.
  * ------------------------------------------------------------------ */
-static void test_random_fuzz_safe(void)
-{
+static void test_random_fuzz_safe() {
+    printf("test random fuzz - slow on XT or emulated XT...\n");
     const int N = 200000;
     int i;
 
