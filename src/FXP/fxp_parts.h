@@ -1,3 +1,8 @@
+/**
+ * Copyright (C) 2026 Dr Jeremy Thornton
+ * DOSFXP - Fast Fixed-Point Number Representation
+ * @brief macro definitions for accessing the whole and fractional parts of the 10:6 fixed point type
+ */
 #ifndef FXP_PARTS_H
 #define FXP_PARTS_H
 

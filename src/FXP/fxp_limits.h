@@ -1,9 +1,9 @@
 /**
  * Copyright (C) 2026 Dr Jeremy Thornton
  * DOSFXP - Fast Fixed-Point Number Representation
+ * @brief Type support - Numeric limits for fxp16_t
+ *
  * Characteristics of core fixed point types
- * Type support
- * Numeric limits for fxp16_t
  */
 #ifndef FXP_LIMITS_H
 #define FXP_LIMITS_H

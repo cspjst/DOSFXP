@@ -1,8 +1,3 @@
-/**
- * DOSFXP - test_fxp_sqrt.c (compact)
- * Exhaustive test for fxp_sqrt. Watcom-only (__asm) - won't build on
- * a host compiler. Negative-input panic path not covered here.
- */
 #include <assert.h>
 #include <stdint.h>
 #include <stdio.h>

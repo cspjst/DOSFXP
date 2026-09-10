@@ -1,8 +1,9 @@
 /**
  * Copyright (C) 2026 Dr Jeremy Thornton
  * DOSFXP - Fast Fixed-Point Number Representation
+ * @brief  Numeric conversions for fxp16_t
+ *
  * Conversion functions to and from the the C <float> number line to the <fxp16_t> fixed point -512..+511.984357 number line
- * Numeric conversions for fxp16_t
  */
 #ifndef FXP_CONVERSIONS_H
 #define FXP_CONVERSIONS_H

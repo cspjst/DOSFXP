@@ -1,3 +1,7 @@
+/**
+ * Copyright (C) 2026 Dr Jeremy Thornton
+ * DOSFXP - Fast Fixed-Point Number Representation
+ */
 #include "fxp_conversions.h"
 #include "fxp_types.h"
 #include "fxp_constants.h"

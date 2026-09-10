@@ -1,3 +1,8 @@
+/**
+ * Copyright (C) 2026 Dr Jeremy Thornton
+ * DOSFXP - Fast Fixed-Point Number Representation
+ * @brief
+ */
 #ifndef FXP_OPERATORS_H
 #define FXP_OPERATORS_H
 
