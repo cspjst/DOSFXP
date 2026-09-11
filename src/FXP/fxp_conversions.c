@@ -3,9 +3,16 @@
  * DOSFXP - Fast Fixed-Point Number Representation
  */
 #include "fxp_conversions.h"
+#include "fxp_parts.h"
 #include "fxp_types.h"
 #include "fxp_constants.h"
 #include "fxp_limits.h"
+#include <stdio.h>
+
+char* fxp_cstr(fxp16_t x, char* s) {
+    sprintf(s, "%i.%i", fxp_part_whole(x), fxp_part_frac(x));
+    return s;
+}
 
 fxp16_t fxp_fix_float(float f) {
     float scaled = f * (float)FXP_ONE;

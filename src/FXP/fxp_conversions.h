@@ -11,6 +11,8 @@
 #include "fxp_types.h"
 #include "fxp_constants.h"
 
+char* fxp_cstr(fxp16_t x, char* s);
+
 // entry to the 10:6 fixed point number line float->fxp16_t
 fxp16_t fxp_fix_float(float f);
 
@@ -25,6 +27,9 @@ inline float fxp_unfix_float(fxp16_t x)  {
 
 // exit from the 10:6 fixed point number line fxp16_t->int16_t, toward zero
 int16_t fxp_unfix_truncate(fxp16_t x);
+
+// exit from the 10:6 fixed point number line fxp16_t->int16_t, toward +infinity
+int16_t fxp_unfix_ceiling(fxp16_t x);
 
 // exit from the 10:6 fixed point number line fxp16_t->int16_t, toward -infinity
 int16_t fxp_unfix_floor(fxp16_t x);
@@ -41,9 +46,6 @@ int16_t fxp_unfix_floor(fxp16_t x);
     parm [ax]                   \
     value [ax]                  \
     modify [ax];
-
-// exit from the 10:6 fixed point number line fxp16_t->int16_t, toward +infinity
-int16_t fxp_unfix_ceiling(fxp16_t x);
 
 // exit from the 10:6 fixed point number line fxp16_t->int16_t, nearest, ties toward +infinity
 extern int16_t fxp_unfix_round(fxp16_t v);

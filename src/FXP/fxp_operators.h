@@ -20,9 +20,6 @@ inline fxp16_t fxp_pow2(fxp16_t x) { return fxp_mul(x, x); }
 
 fxp16_t fxp_sqrt(fxp16_t x);
 
-/**
- * computes the fixed point remainder of dividing x by y
- */
 fxp16_t fxp_mod(fxp16_t x, fxp16_t y);
 
 #endif

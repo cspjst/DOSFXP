@@ -94,6 +94,19 @@ _SHLD:	sal		ax, 1			        ; shift left DX:AX as 32 bits
 }
 
 /**
+ * computes the fixed point remainder of dividing x by y
+ */
+fxp16_t fxp_mod(fxp16_t x, fxp16_t y) {
+    __asm {
+        .8086
+        mov bx, dx
+        cwd                             ; sign-extend x into dx:ax
+        idiv    bx                      ; dx = remainder (returned), ax = quotient (discarded)
+        mov     ax, dx                  ; move remainder into ax return
+    }
+}
+
+/**
  * Computes y = sqrt(x) via widen-then-integer-sqrt: the raw value is shifted left by FXP_FRACTIONAL_BITS before extraction,
  * which yields a result already correctly scaled to 10:6 - not merely close, but the exact floor of the true value at this
  * format's own resolution (verified exhaustively against a double-precision oracle across every representable non-negative input)
