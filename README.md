@@ -1,7 +1,7 @@
 # DOSFXP - Fast Fixed-Point Number Representation
 Fast 16-bit signed 10:6 fixed-point math library in C and 8086 assembler, built for 8086+ DOS game development. Targets CGA/HGA/VGA retro resolutions.
 
-**TLDR.** DOSFXP defines a single 16-bit signed fixed-point type, `fxp16_t`, using a 10:6 split (10 integer bits, 6 fractional bits, two's complement), stored as `int16_t`. The format yields a representable range of -512.0 to +511.984375, with a fractional resolution of 1/64 (0.015625). This range was derived empirically from candidate DOS display resolutions rather than chosen arbitrarily.
+**TLDR.** DOSFXP defines a single 16-bit signed fixed-point type, `fxp16_t`, using a 10:6 split (10 integer bits, 6 fractional bits, two's complement), stored as `int16_t`. The format yields a representable range of -512.0 to +511.984375, with a fractional resolution of 1/64 (0.015625). This range was derived empirically from candidate DOS display resolutions.
 
 **Precision Adequacy.** The chosen fractional resolution was validated against the accuracy demands of a stored trigonometric constant i.e. π ≈ 201/64 = 3.140625, relative error ≈0.031%. Propagated through circumference-point calculation, the resulting positional error was shown to be under one pixel even at radii well beyond any listed display's dimensions, and an order of magnitude smaller than both the format's own fractional granularity and the terminal pixel-rounding step — establishing that the fixed-point format is not a limiting source of visual error.
 
