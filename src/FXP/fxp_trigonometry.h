@@ -20,10 +20,10 @@
 
 #define FXP_BAM14_ANGLE_BITS        14
 #define FXP_BAM14_CIRCLE            16384   // steps/revolution
-#define FXP_BAM14_QUADRANT          4096
+#define FXP_BAM14_QUADRANT          4096    // 0..90 degrees
 #define FXP_BAM14_QUADRANT_BITS     12
 #define FXP_BAM14_QUADRANT_MASK     0xFFF
-#define FXP_BAM14_QUADRANT_SIZE     4096
+#define FXP_BAM14_QUADRANT_SIZE     4096    // 4096 16bit word entrys = 8192 bytes
 #define FXP_BAM14_FULL_MASK         0x3FFF  //full 14-bit wrap, 0..16383
 
 fxp16_t fxp_bam14_sin(fxp16_t a);

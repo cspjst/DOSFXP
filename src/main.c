@@ -4,13 +4,15 @@
 //#include "TEST/test_fxp_mul.h"
 //#include "TEST/test_fxp_div.h"
 //#include "TEST/test_fxp_int0.h"
-#include "TEST/test_fxp_sqrt.h"
+//#include "TEST/test_fxp_sqrt.h"
+#include "TEST/test_fxp_trig.h"
 
 int main() {
     //test_fxp();
     //test_fxp_mul();
     //test_fxp_div();
     //test_fxp_int0();
-    test_fxp_sqrt();
+    //test_fxp_sqrt();
+    test_fxp_trig();
     return 0;
 }
