@@ -11,7 +11,8 @@
 #include "fxp_types.h"
 #include "fxp_constants.h"
 
-char* fxp_cstr(fxp16_t x, char* s);
+// entry to the 10:6 fixed point number line int->fxp16_t
+inline fxp16_t fxp_fix_int(int i) { return i << 6; }
 
 // entry to the 10:6 fixed point number line float->fxp16_t
 fxp16_t fxp_fix_float(float f);
